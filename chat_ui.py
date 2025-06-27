@@ -11,6 +11,8 @@ from camel.storages import QdrantStorage
 from camel.retrievers import VectorRetriever
 import tempfile
 import shutil
+import time
+import openai
 
 load_dotenv()
 
@@ -59,8 +61,8 @@ def initialize_agents():
     deepseek_api_key = os.getenv('FIRST_DEEPSEEK_API_KEY')
     qwen_api_key = os.getenv('QWEN_API_KEY')
     second_deepseek_api_key = os.getenv('SECOND_DEEPSEEK_API_KEY')
-    if not deepseek_api_key or not qwen_api_key:
-        st.error("❌ 请设置环境变量 DEEPSEEK_API_KEY 和 QWEN_API_KEY")
+    if not deepseek_api_key or not qwen_api_key or not second_deepseek_api_key:
+        st.error("❌ 请设置环境变量 DEEPSEEK_API_KEY 和 QWEN_API_KEY 和 SECOND_DEEPSEEK_API_KEY")
         st.stop()
     
     api_base = "https://api.siliconflow.cn/v1"
@@ -93,7 +95,7 @@ def initialize_agents():
         model_type="deepseek/deepseek-r1-0528:free",
         url="https://openrouter.ai/api/v1/",
         api_key=second_deepseek_api_key,
-        model_config_dict={"max_tokens": 1024}
+        model_config_dict={"max_tokens": 4096}
     )
     
     # 文本回答者 Agent
@@ -125,7 +127,7 @@ def initialize_agents():
     evaluator_agent = ChatAgent(
         system_message=bm.make_assistant_message(
             role_name="评估专家",
-            content="你是一个 AI 评估员，评价ai对用户问题的回答质量以及符合用户需求程度，请在最开始对回答进行打分（1~10），并说明原因。注意打分时输出单个数字然后空格加上理由，不需要类似于'x分'这样的后缀。确保你输出的开头是分数"
+            content="你是一个 AI 评估员，评价ai对用户问题的回答质量以及符合用户需求程度，请在最开始输出一个数字，即对回答的分数（1~10），然后再简要说明原因。确保你输出的开头是一个数字"
         ),
         model=evaluator_model,
         message_window_size=10
@@ -203,7 +205,7 @@ def analyze_image(image, vision_agent):
         return None
 
 def process_question_with_knowledge(user_question, image_description, vector_retriever, answerer_agent, kb_agent, evaluator_agent, use_kb=True):
-    """处理包含知识库检索的用户问题"""
+    """处理包含知识库检索的用户问题，并加入带延迟的重试机制"""
     knowledge_info = ""
     
     # 如果启用知识库，先检索相关信息
@@ -237,6 +239,7 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
     final_answer = None
     is_satisfied = False
     process_log = []
+    wait_time = 5  # <--- 新增：初始等待时间为5秒
     
     while attempts < max_retries and not is_satisfied:
         attempts += 1
@@ -246,7 +249,6 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
             # Step 1: 回答者生成答案
             answer_response = answerer_agent.step(usr_msg)
             
-            # 检查回答响应是否有效
             if not answer_response or not hasattr(answer_response, 'msgs') or not answer_response.msgs:
                 process_log.append("❌ 回答生成失败：API返回空响应")
                 final_answer = "抱歉，我无法生成回答，请稍后重试。"
@@ -255,7 +257,10 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
             answer_content = answer_response.msgs[0].content
             process_log.append(f"【回答者回复】\n{answer_content}")
             
-            # Step 2: 构造评估请求
+            # Step 2: 构造评估请求 (并截断过长的内容)
+            truncated_answer = (answer_content[:1500] + '...') if len(answer_content) > 1500 else answer_content
+            truncated_kb = (knowledge_info[:1000] + '...') if len(knowledge_info) > 1000 else knowledge_info
+
             evaluation_prompt = f"""
 请评估以下问答过程的质量：
 
@@ -266,10 +271,10 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
 {image_description if image_description else "无图片"}
 
 【知识库信息】
-{knowledge_info if knowledge_info else "未使用知识库"}
+{truncated_kb if truncated_kb else "未使用知识库"}
 
-【回答者回复】
-{answer_content}
+【回答者回复摘要】
+{truncated_answer}
 
 【评分标准】
 请从准确性、完整性、清晰度等方面进行打分（1~10），并简要说明理由。
@@ -283,49 +288,50 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
             )
             
             # Step 3: 评估者分析回答质量
-            try:
-                evaluation_response = evaluator_agent.step(evaluation_msg)
-                
-                # 检查评估响应是否有效
-                if not evaluation_response or not hasattr(evaluation_response, 'msgs') or not evaluation_response.msgs:
-                    process_log.append("⚠️ 评估失败：API返回空响应，默认通过")
-                    final_answer = answer_content
-                    is_satisfied = True
-                    break
-                    
-                evaluation_content = evaluation_response.msgs[0].content.strip()
-                process_log.append(f"【评估结果】\n{evaluation_content}")
-                
-                # Step 4: 判断是否满意
-                try:
-                    score = int(evaluation_content.split()[0])
-                    if score >= 6:
-                        is_satisfied = True
-                        final_answer = answer_content
-                        process_log.append(f"✅ 评分达标（{score}分），生成完成！")
-                    else:
-                        improve_msg = bm.make_user_message(
-                            role_name='评估反馈',
-                            content=f"你的回答得分 {score} 分，不够理想。请根据以下建议改进：{evaluation_content}"
-                        )
-                        answerer_agent.update_messages(improve_msg)
-                        process_log.append(f"❌ 评分不达标（{score}分），准备重新生成...")
-                except (ValueError, IndexError) as e:
-                    process_log.append(f"⚠️ 无法解析评分，默认通过：{str(e)}")
-                    final_answer = answer_content
-                    is_satisfied = True
-                    
-            except Exception as e:
-                process_log.append(f"⚠️ 评估过程出错，默认通过：{str(e)}")
+            evaluation_response = evaluator_agent.step(evaluation_msg)
+            
+            if not evaluation_response or not hasattr(evaluation_response, 'msgs') or not evaluation_response.msgs:
+                process_log.append("⚠️ 评估失败：API返回空响应，默认通过")
                 final_answer = answer_content
                 is_satisfied = True
+                break
                 
+            evaluation_content = evaluation_response.msgs[0].content.strip()
+            process_log.append(f"【评估结果】\n{evaluation_content}")
+            
+            # Step 4: 判断是否满意
+            try:
+                score_str = evaluation_content.split()[0]
+                # 兼容 "8." 这样的格式
+                score = int(float(score_str.strip('.')))
+                if score >= 6:
+                    is_satisfied = True
+                    final_answer = answer_content
+                    process_log.append(f"✅ 评分达标（{score}分），生成完成！")
+                else:
+                    improve_msg = bm.make_user_message(
+                        role_name='评估反馈',
+                        content=f"你的回答得分 {score} 分，不够理想。请根据以下建议改进：{evaluation_content}"
+                    )
+                    answerer_agent.update_messages(improve_msg)
+                    process_log.append(f"❌ 评分不达标（{score}分），准备重新生成...")
+            except (ValueError, IndexError) as e:
+                process_log.append(f"⚠️ 无法解析评分 '{evaluation_content[:20]}...'，默认通过。错误: {e}")
+                final_answer = answer_content
+                is_satisfied = True
+
+        except openai.RateLimitError as e:
+            process_log.append(f" Rate-limit 错误：TPM 达到上限。将在 {wait_time} 秒后重试...")
+            time.sleep(wait_time)
+            wait_time *= 2  # 指数退避，增加下次等待时间
+            if attempts == max_retries:
+                final_answer = f"抱歉，API 请求过于频繁，请稍后再试。错误详情: {e}"
+
         except Exception as e:
             process_log.append(f"❌ 第{attempts}次尝试失败：{str(e)}")
             if attempts == max_retries:
                 final_answer = "抱歉，系统遇到问题，请稍后重试。"
     
-    # 如果所有尝试都失败了，提供默认回答
     if final_answer is None:
         final_answer = "抱歉，我无法为您提供满意的回答，请稍后重试或重新描述您的问题。"
         process_log.append("❌ 所有尝试都失败，返回默认回答")

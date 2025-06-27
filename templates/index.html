@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>旅游攻略生成系统</title>
+    <style>
+        body {
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #e2f3f7;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .examples {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('submitBtn').disabled = true;
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>旅游攻略生成系统</h1>
+    
+    <div class="form-container">
+        <form action="/process" method="post" onsubmit="return showLoading()">
+            <label for="query">请输入您的旅行需求：</label>
+            <input type="text" id="query" name="query" placeholder="例如：我想去北京玩三天" required>
+            <button type="submit" id="submitBtn">生成攻略</button>
+        </form>
+    </div>
+    
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>正在生成旅游攻略，这可能需要几分钟时间，请耐心等待...</p>
+    </div>
+    
+    {% if message %}
+    <div class="message {{ message_type }}">
+        <p>{{ message }}</p>
+        {% if file_path %}
+        <p>您的攻略已生成，<a href="/view/{{ file_path | urlencode }}" target="_blank">点击查看</a></p>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    <div class="examples">
+        <h3>示例输入：</h3>
+        <ul>
+            <li>我想去北京玩三天</li>
+            <li>打算去上海旅游一周</li>
+            <li>计划去杭州旅行2天</li>
+            <li>我想去成都</li>
+        </ul>
+        <p><b>注意：</b>生成过程可能需要几分钟时间，尤其是在首次生成特定城市的攻略时。请耐心等待，不要关闭或刷新页面。</p>
+    </div>
+</body>
+</html>

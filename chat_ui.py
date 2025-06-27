@@ -56,9 +56,9 @@ def initialize_knowledge_base():
 @st.cache_resource
 def initialize_agents():
     # API 配置检查
-    deepseek_api_key = os.getenv('DEEPSEEK_API_KEY')
+    deepseek_api_key = os.getenv('FIRST_DEEPSEEK_API_KEY')
     qwen_api_key = os.getenv('QWEN_API_KEY')
-    
+    second_deepseek_api_key = os.getenv('SECOND_DEEPSEEK_API_KEY')
     if not deepseek_api_key or not qwen_api_key:
         st.error("❌ 请设置环境变量 DEEPSEEK_API_KEY 和 QWEN_API_KEY")
         st.stop()
@@ -90,9 +90,9 @@ def initialize_agents():
     # 创建评估者模型（DeepSeek-R1）
     evaluator_model = ModelFactory.create(
         model_platform=ModelPlatformType.OPENAI_COMPATIBLE_MODEL,
-        model_type="deepseek-ai/DeepSeek-V3",
-        url=api_base,
-        api_key=deepseek_api_key,
+        model_type="deepseek/deepseek-r1-0528:free",
+        url="https://openrouter.ai/api/v1/",
+        api_key=second_deepseek_api_key,
         model_config_dict={"max_tokens": 1024}
     )
     
@@ -125,7 +125,7 @@ def initialize_agents():
     evaluator_agent = ChatAgent(
         system_message=bm.make_assistant_message(
             role_name="评估专家",
-            content="你是一个 AI 评估员，评价ai对用户问题的回答质量以及符合用户需求程度，请对回答进行打分（1~10），并说明原因。注意打分时输出单个数字然后空格加上理由，不需要类似于'x分'这样的后缀。"
+            content="你是一个 AI 评估员，评价ai对用户问题的回答质量以及符合用户需求程度，请在最开始对回答进行打分（1~10），并说明原因。注意打分时输出单个数字然后空格加上理由，不需要类似于'x分'这样的后缀。确保你输出的开头是分数"
         ),
         model=evaluator_model,
         message_window_size=10

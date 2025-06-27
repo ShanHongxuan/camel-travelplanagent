@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html><head><meta charset='utf-8'><title>旅行推荐</title>
+<style>
+
+    body {
+       font-family: "Microsoft YaHei", sans-serif;
+       margin: 20px;
+       background-color: #f8f8f8;
+       line-height: 1.6;
+    }
+    h1, h2 {
+       color: #333;
+    }
+    .itinerary-text {
+       background-color: #fff;
+       padding: 20px;
+       border-radius: 8px;
+       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+       margin-bottom: 30px;
+    }
+    .card-container {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 20px;
+       margin: 20px 0;
+    }
+    .card {
+       flex: 0 0 calc(300px);
+       border: 1px solid #ccc;
+       border-radius: 10px;
+       overflow: hidden;
+       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+       background-color: #fff;
+    }
+    .card-image {
+       width: 100%;
+       height: 200px;
+       overflow: hidden;
+       background: #f8f8f8;
+       text-align: center;
+    }
+    .card-image img {
+       max-width: 100%;
+       max-height: 100%;
+       object-fit: cover;
+    }
+    .card-content {
+       padding: 10px 15px;
+    }
+    .card-content h3 {
+       margin-top: 0;
+       margin-bottom: 10px;
+       font-size: 18px;
+    }
+    .card-content p {
+       margin: 5px 0;
+    }
+    .image-center {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .image-center img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+</style></head><body>
+<h1>旅行行程与推荐</h1>
+<div class="itinerary-text">
+<p>### Day1: 天安门广场周边 & 故宫  </p>
+<p>#### **早餐**  </p>
+<p>- **美食**: 老北京面茶  </p>
+<p>  - 描述：糜子面粥配芝麻酱和芝麻盐，传统早餐暖胃又健康。  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g8b8003386d17a2f5a2176ecc059a33f60a7507f0ccbcd650d6b428e6e2dc09fbcdc73ac9340c52b4ec78d774a2e75a3977f8d69763770e16efba3da9f5d3bdd1_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **上午活动**  </p>
+<p>- **景点**: 天安门广场  </p>
+<p>  - 描述：中国政治和历史的象征，世界最大的城市广场。  </p>
+<p>  - 预计游玩时长：1小时  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g1f1807467a5e56f1759f633d6ff7669fb899e9b9586a561fa9d7463d83feb4dc3617dde5405bffd75479ec674ee3cbaf88bd2bac0b32994daaf2a68c2ec337bf_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>- **景点**: 毛主席纪念堂  </p>
+<p>  - 描述：纪念毛泽东主席的庄严建筑。  </p>
+<p>  - 预计游玩时长：30分钟  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g38f850678861b9e6a407f69f1129715aca2a0be498ac465b80c17bfb02d3481592a6070e597ce9b2487e3f204677e444278bf8132be952b0b3255c834c5fb90a_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **午餐**  </p>
+<p>- **美食**: 老北京炸酱面  </p>
+<p>  - 描述：浓郁炸酱搭配手擀面，地道北京味。  </p>
+<p>  - 预计就餐时长：45分钟  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g255c2bf144e7609b1249023b3d802ccead293123c332278db647d506df049cfb1238049e12fe9d062c6ec007b9398006372b92ccde3727b6095e4dab33a124f6_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **下午活动**  </p>
+<p>- **景点**: 故宫博物院  </p>
+<p>  - 描述：中国古代宫廷建筑的精华，世界文化遗产。  </p>
+<p>  - 预计游玩时长：3小时  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g9ff420d936b4cca31d2252ff4cc1b82416e479a0a95919a7a7f862438e12ef1c4a922df072af7fecdd0be3234e76760f959097823a8a76d6aebb4da46ea80472_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **晚餐**  </p>
+<p>- **美食**: 北京烤鸭  </p>
+<p>  - 描述：皮脆肉嫩，享誉中外。推荐餐厅：全聚德或大董烤鸭。  </p>
+<p>  - 预计就餐时长：1.5小时  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/gc994beee3695ce9400f66be01454f88b6ff541be5ce2f143619b94b9dad9ad469c87b9f2b73e4ae0c0f27c7e1822892d5502dc29e27516a36b301e75bf9caae8_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>---</p>
+<p>### Day2: 长城 & 清华/北大  </p>
+<p>#### **早餐**  </p>
+<p>- **美食**: 老北京炒肝  </p>
+<p>  - 描述：猪肝和大肠勾芡炖煮，搭配包子更美味。  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/ga300c53f1e06affa2cb70dcaf93d12d5025c1cd5b38d9d8a5ae9ddfbc4dbb347067da8866c69ecda1b183937e157262878de60c260df4eb3c7d672ac12d2af2f_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **上午活动**  </p>
+<p>- **景点**: 八达岭长城  </p>
+<p>  - 描述：长城最具代表性的一段，风景壮丽。  </p>
+<p>  - 预计游玩时长：2.5小时  </p>
+<p>  - 交通建议：包车或乘坐旅游专线大巴（约1.5小时车程）。  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g95c28529b44ab46d521758eaae120175e92572a593b2904fae042e2113c271d0d7a6b41541429a120606546e76488f32b0277a80267f3924e922699cd890bed5_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **午餐**  </p>
+<p>- **美食**: 涮羊肉  </p>
+<p>  - 描述：鲜嫩羊肉片在清汤中涮煮，北方传统火锅美食。  </p>
+<p>  - 预计就餐时长：1小时  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g29e2813d238fc1ae164347e221086eaccaf4385d0e6eaeda0bbd4de467cc0ce9ca6978ad777c6615a24fc43e8b2aa21b44a5fa7378147306665370c9e931de1b_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **下午活动**  </p>
+<p>- **景点**: 清华大学/北京大学  </p>
+<p>  - 描述：中国顶级高等学府，校园文化浓厚。  </p>
+<p>  - 预计游玩时长：2小时  </p>
+<p>  - 交通建议：从长城返回市区后直接前往（约1.5小时车程）。  </p>
+<p>  - 图片URL：[点击查看](https://images.unsplash.com/photo-1652678081432-cb907555d49e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Njc3MDd8MHwxfHNlYXJjaHwxfHwlRTUlOEMlOTclRTQlQkElQUMlMjAlRTYlQjglODUlRTUlOEQlOEUlMkYlRTUlOEMlOTclRTUlQTQlQTd8ZW58MHwwfHx8MTc1MTAzMTg0M3ww&ixlib=rb-4.1.0&q=80&w=1080)  </p>
+<p>#### **晚餐**  </p>
+<p>- **美食**: 炙子烤肉  </p>
+<p>  - 描述：特制铁板炙烤牛羊肉片，香气四溢。  </p>
+<p>  - 预计就餐时长：1小时  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/gce5de113ca0276a4c108db30675d3589078214bbac852c8be48d6a7912b15a4573fd75b643430ead322c1591f16c87ef308326fb07c2b1eff16226f75c1bab24_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>---</p>
+<p>### Day3: 文化 & 现代建筑  </p>
+<p>#### **早餐**  </p>
+<p>- **美食**: 驴打滚  </p>
+<p>  - 描述：糯米卷裹豆沙，外层滚黄豆粉，甜而不腻。  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g23e8bccb4d494d7dfca423ba717c5fa0dfd77a27bfaa51a6c2ca4977de1ddd1e5665933393d798d68b3f6bb91010f0002aff781276b3a47698f716d0be6403c2_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **上午活动**  </p>
+<p>- **景点**: 国家博物馆  </p>
+<p>  - 描述：展示中国历史文化的国家级博物馆。  </p>
+<p>  - 预计游玩时长：2小时  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/gf646bd1cbba90bd16cc636904654461dae84e81c9e779ed3a6afb75e54aa25c2fed0f0182c469ddd00122042ff006daac8c047624112539e0539a7bfca703a0c_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **午餐**  </p>
+<p>- **美食**: 卤煮  </p>
+<p>  - 描述：炖煮的猪肠、猪肺等，传统小吃风味浓郁。  </p>
+<p>  - 预计就餐时长：45分钟  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g614dce2969c02d3b4dc6d66f461e1de2bced6a253c8c4b370483a8a853b64c0ab63eb4806fc56a95746e0aaf397c379ad14228aa3620cbf8236761b68893271b_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **下午活动**  </p>
+<p>- **景点**: 鸟巢(国家体育场)  </p>
+<p>  - 描述：2008年北京奥运会主体育场，现代建筑杰作。  </p>
+<p>  - 预计游玩时长：1.5小时  </p>
+<p>  - 图片URL：[点击查看](https://images.unsplash.com/photo-1736134068411-69a6d4405353?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Njc3MDd8MHwxfHNlYXJjaHwxfHwlRTUlOEMlOTclRTQlQkElQUMlMjAlRTklQjglOUYlRTUlQjclQTIlMjglRTUlOUIlQkQlRTUlQUUlQjYlRTQlQkQlOTMlRTglODIlQjIlRTUlOUMlQkElMjl8ZW58MHwwfHx8MTc1MTAzMTgyOHww&ixlib=rb-4.1.0&q=80&w=1080)  </p>
+<p>- **景点**: 王府井  </p>
+<p>  - 描述：北京著名的商业街，集购物和美食于一体。  </p>
+<p>  - 预计游玩时长：1.5小时  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g26cf23f564f19882083f9b1967a2d79e8912b5201a45d1acac70875bc269e7611afdb4eb6b6438c621f587cb4d0f72df717cfbdb7a1b0ed87b2a8f4785b5ae8b_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>#### **晚餐**  </p>
+<p>- **美食**: 老北京酸奶  </p>
+<p>  - 描述：传统发酵乳制品，酸甜可口。  </p>
+<p>  - 预计就餐时长：30分钟  </p>
+<p>  - 图片URL：[点击查看](</p>
+<p>        <div style="text-align: center;"></p>
+<p>            <img src="https://pixabay.com/get/g708c53657ebf09e4a8cbb773d9d287a3f758a0537b92317c03ceb4f5ee04ecce5f518e9add54b853ad8f9259f7aed3be87ffb5e1734ed608914cb1131c11214b_640.jpg" alt="图片" style="width: 300px; height: 200px;" /></p>
+<p>        </div></p>
+<p>        )  </p>
+<p>---</p>
+<p>### **注意事项**  </p>
+<p>1. **交通建议**：  </p>
+<p>   - 市内景点建议乘坐地铁或打车。  </p>
+<p>   - 长城和明十三陵建议包车或跟团。  </p>
+<p>2. **门票预约**：故宫、国家博物馆等景点需提前预约。  </p>
+<p>3. **饮食注意**：豆汁味道独特，建议少量尝试。  </p>
+<p>希望这个行程能让您的北京之旅充实而愉快！</p>
+</div>
+<h2>景点推荐</h2>
+<div class="card-container">
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g1f1807467a5e56f1759f633d6ff7669fb899e9b9586a561fa9d7463d83feb4dc3617dde5405bffd75479ec674ee3cbaf88bd2bac0b32994daaf2a68c2ec337bf_640.jpg" alt="天安门广场" />
+            </div>
+            <div class="card-content">
+                <h3>天安门广场</h3>
+                <p><strong>距离:</strong> </p>
+                <p>中国政治和历史的象征，世界最大的城市广场。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g9ff420d936b4cca31d2252ff4cc1b82416e479a0a95919a7a7f862438e12ef1c4a922df072af7fecdd0be3234e76760f959097823a8a76d6aebb4da46ea80472_640.jpg" alt="故宫博物院" />
+            </div>
+            <div class="card-content">
+                <h3>故宫博物院</h3>
+                <p><strong>距离:</strong> </p>
+                <p>中国古代宫廷建筑的精华，世界文化遗产。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g26cf23f564f19882083f9b1967a2d79e8912b5201a45d1acac70875bc269e7611afdb4eb6b6438c621f587cb4d0f72df717cfbdb7a1b0ed87b2a8f4785b5ae8b_640.jpg" alt="王府井" />
+            </div>
+            <div class="card-content">
+                <h3>王府井</h3>
+                <p><strong>距离:</strong> </p>
+                <p>北京著名的商业街，集购物和美食于一体。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g95c28529b44ab46d521758eaae120175e92572a593b2904fae042e2113c271d0d7a6b41541429a120606546e76488f32b0277a80267f3924e922699cd890bed5_640.jpg" alt="八达岭长城" />
+            </div>
+            <div class="card-content">
+                <h3>八达岭长城</h3>
+                <p><strong>距离:</strong> </p>
+                <p>长城最具代表性的一段，风景壮丽。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g031b977d6de6a5f612bb90e6f4b47ea772001affe24e15ffc16bd69e5fd5cf49bcb95bd833af2c8b83b2522cae03379154732364ffc65079b96ab7e79dabd205_640.jpg" alt="明十三陵" />
+            </div>
+            <div class="card-content">
+                <h3>明十三陵</h3>
+                <p><strong>距离:</strong> </p>
+                <p>明朝十三位皇帝的陵墓群，世界文化遗产。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1736134068411-69a6d4405353?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Njc3MDd8MHwxfHNlYXJjaHwxfHwlRTUlOEMlOTclRTQlQkElQUMlMjAlRTklQjglOUYlRTUlQjclQTIlMjglRTUlOUIlQkQlRTUlQUUlQjYlRTQlQkQlOTMlRTglODIlQjIlRTUlOUMlQkElMjl8ZW58MHwwfHx8MTc1MTAzMTgyOHww&ixlib=rb-4.1.0&q=80&w=1080" alt="鸟巢(国家体育场)" />
+            </div>
+            <div class="card-content">
+                <h3>鸟巢(国家体育场)</h3>
+                <p><strong>距离:</strong> </p>
+                <p>2008年北京奥运会主体育场，现代建筑杰作。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g0989f8358cee7a52f802fad2da755c018f54fe7629dcb6087c4e7f839a388632164ab74ea91be114c68cf67a52f0d80680a7555d1cad029a278136a225e434f2_640.jpg" alt="圆明园" />
+            </div>
+            <div class="card-content">
+                <h3>圆明园</h3>
+                <p><strong>距离:</strong> </p>
+                <p>曾经的皇家园林，现为历史遗迹公园。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g38f850678861b9e6a407f69f1129715aca2a0be498ac465b80c17bfb02d3481592a6070e597ce9b2487e3f204677e444278bf8132be952b0b3255c834c5fb90a_640.jpg" alt="毛主席纪念堂" />
+            </div>
+            <div class="card-content">
+                <h3>毛主席纪念堂</h3>
+                <p><strong>距离:</strong> </p>
+                <p>纪念毛泽东主席的庄严建筑。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/gf646bd1cbba90bd16cc636904654461dae84e81c9e779ed3a6afb75e54aa25c2fed0f0182c469ddd00122042ff006daac8c047624112539e0539a7bfca703a0c_640.jpg" alt="国家博物馆" />
+            </div>
+            <div class="card-content">
+                <h3>国家博物馆</h3>
+                <p><strong>距离:</strong> </p>
+                <p>展示中国历史文化的国家级博物馆。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g5238751561f85c45bcabcea5bd75794d3de78a9f85438da7a8d4181d7bebd3016512ad8c4e4aa93d316ac87987db04b007a4efa519d8a19a8bca04ddf7ee3841_640.jpg" alt="居庸关长城" />
+            </div>
+            <div class="card-content">
+                <h3>居庸关长城</h3>
+                <p><strong>距离:</strong> </p>
+                <p>长城险要关隘之一，风景优美。</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1652678081432-cb907555d49e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Njc3MDd8MHwxfHNlYXJjaHwxfHwlRTUlOEMlOTclRTQlQkElQUMlMjAlRTYlQjglODUlRTUlOEQlOEUlMkYlRTUlOEMlOTclRTUlQTQlQTd8ZW58MHwwfHx8MTc1MTAzMTg0M3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="清华/北大" />
+            </div>
+            <div class="card-content">
+                <h3>清华/北大</h3>
+                <p><strong>距离:</strong> </p>
+                <p>中国顶级高等学府，校园文化浓厚。</p>
+            </div>
+            </div>
+            
+</div>
+<h2>美食推荐</h2>
+<div class="card-container">
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/gc994beee3695ce9400f66be01454f88b6ff541be5ce2f143619b94b9dad9ad469c87b9f2b73e4ae0c0f27c7e1822892d5502dc29e27516a36b301e75bf9caae8_640.jpg" alt="北京烤鸭" />
+            </div>
+            <div class="card-content">
+                <h3>北京烤鸭</h3>
+                <p>北京最具代表性的传统名菜，皮脆肉嫩，享誉中外</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g255c2bf144e7609b1249023b3d802ccead293123c332278db647d506df049cfb1238049e12fe9d062c6ec007b9398006372b92ccde3727b6095e4dab33a124f6_640.jpg" alt="炸酱面" />
+            </div>
+            <div class="card-content">
+                <h3>炸酱面</h3>
+                <p>老北京特色面食，以浓郁的炸酱搭配手擀面</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g29e2813d238fc1ae164347e221086eaccaf4385d0e6eaeda0bbd4de467cc0ce9ca6978ad777c6615a24fc43e8b2aa21b44a5fa7378147306665370c9e931de1b_640.jpg" alt="涮羊肉" />
+            </div>
+            <div class="card-content">
+                <h3>涮羊肉</h3>
+                <p>北方传统火锅美食，以鲜嫩的羊肉片在清汤中涮煮</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g23e8bccb4d494d7dfca423ba717c5fa0dfd77a27bfaa51a6c2ca4977de1ddd1e5665933393d798d68b3f6bb91010f0002aff781276b3a47698f716d0be6403c2_640.jpg" alt="驴打滚" />
+            </div>
+            <div class="card-content">
+                <h3>驴打滚</h3>
+                <p>北京传统甜点，糯米卷裹豆沙，外层滚黄豆粉</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/gb28b1ca4699bb0c4795587e9f890d68e87ef4fe8968ad0daba900ae62f866e2993448866790d1068e5d6f87349bd778fd844662e54deb72649d2ce82f7bebe46_640.jpg" alt="豆汁" />
+            </div>
+            <div class="card-content">
+                <h3>豆汁</h3>
+                <p>老北京特色饮品，发酵绿豆制成，味道独特</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g614dce2969c02d3b4dc6d66f461e1de2bced6a253c8c4b370483a8a853b64c0ab63eb4806fc56a95746e0aaf397c379ad14228aa3620cbf8236761b68893271b_640.jpg" alt="卤煮" />
+            </div>
+            <div class="card-content">
+                <h3>卤煮</h3>
+                <p>北京传统小吃，以炖煮的猪肠、猪肺等为主料</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/ga300c53f1e06affa2cb70dcaf93d12d5025c1cd5b38d9d8a5ae9ddfbc4dbb347067da8866c69ecda1b183937e157262878de60c260df4eb3c7d672ac12d2af2f_640.jpg" alt="炒肝" />
+            </div>
+            <div class="card-content">
+                <h3>炒肝</h3>
+                <p>北京满族传统名吃，猪肝和大肠勾芡炖煮</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g8b8003386d17a2f5a2176ecc059a33f60a7507f0ccbcd650d6b428e6e2dc09fbcdc73ac9340c52b4ec78d774a2e75a3977f8d69763770e16efba3da9f5d3bdd1_640.jpg" alt="面茶" />
+            </div>
+            <div class="card-content">
+                <h3>面茶</h3>
+                <p>老北京早点小吃，糜子面粥配芝麻酱和芝麻盐</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/gce5de113ca0276a4c108db30675d3589078214bbac852c8be48d6a7912b15a4573fd75b643430ead322c1591f16c87ef308326fb07c2b1eff16226f75c1bab24_640.jpg" alt="炙子烤肉" />
+            </div>
+            <div class="card-content">
+                <h3>炙子烤肉</h3>
+                <p>北京特色烤肉，用特制铁板炙烤牛羊肉片</p>
+            </div>
+            </div>
+            
+
+            <div class="card">
+            <div class="card-image">
+                <img src="https://pixabay.com/get/g708c53657ebf09e4a8cbb773d9d287a3f758a0537b92317c03ceb4f5ee04ecce5f518e9add54b853ad8f9259f7aed3be87ffb5e1734ed608914cb1131c11214b_640.jpg" alt="老北京酸奶" />
+            </div>
+            <div class="card-content">
+                <h3>老北京酸奶</h3>
+                <p>北京传统发酵乳制品，口感浓稠酸甜</p>
+            </div>
+            </div>
+            
+</div>
+</body></html>

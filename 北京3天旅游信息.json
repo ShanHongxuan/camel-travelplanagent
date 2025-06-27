@@ -1,0 +1,222 @@
+{
+    "city": "北京",
+    "days": 3,
+    "base路线": {
+        "base_guide": {
+            "city": "北京",
+            "days": 3,
+            "day1": {
+                "morning": "天安门广场、毛主席纪念堂、国家博物馆",
+                "afternoon": "故宫博物院",
+                "evening": "王府井步行街，品尝四季民福烤鸭",
+                "tips": "故宫需提前预约，建议早起避开人流高峰"
+            },
+            "day2": {
+                "morning": "八达岭长城",
+                "afternoon": "明十三陵",
+                "evening": "鸟巢(国家体育场)、水立方夜景",
+                "tips": "长城建议选择八达岭段，交通方便；十三陵可重点参观定陵或长陵"
+            },
+            "day3": {
+                "morning": "颐和园",
+                "afternoon": "圆明园",
+                "evening": "天坛公园",
+                "tips": "颐和园建议从新建宫门进，可立即看到十七孔桥；圆明园重点参观西洋楼遗址"
+            },
+            "alternative_routes": [
+                "人文路线：天坛→雍和宫→国子监/孔庙→五道营胡同",
+                "老北京风情路线：簋街→南锣鼓巷→钟鼓楼→什刹海→后海"
+            ],
+            "must_eat": [
+                "TOP1 北京烤鸭（推荐：全聚德、四季民福）",
+                "TOP2 炸酱面（推荐：方砖厂69号）",
+                "TOP3 涮羊肉（推荐：东来顺）",
+                "TOP4 驴打滚",
+                "TOP5 豆汁（挑战型美食）",
+                "TOP6 卤煮火烧（推荐：门框卤煮）"
+            ],
+            "transport_tips": [
+                "地铁覆盖主要景点，推荐使用「亿通行」APP扫码乘车",
+                "长城景区建议乘坐877路公交或市郊铁路S2线",
+                "天安门周边停车困难，建议公共交通出行"
+            ],
+            "budget_reference": "人均约700元（含门票、基础餐饮、交通）",
+            "special_notes": [
+                "所有热门景点建议提前1-7天预约（特别是故宫、国家博物馆）",
+                "北京安检严格，请随身携带身份证",
+                "春季注意防风沙，冬季需备好保暖衣物"
+            ]
+        }
+    },
+    "景点": [
+        {
+            "name": "天安门广场",
+            "describe": "中国的象征性广场，世界上最大的城市广场",
+            "图片url": "https://pixabay.com/get/gbd963005bf8cbd8b59f96a3a7452d1ed154c417da085e5d37006ee032c22b486579012c7aa11646074e1b984f8f678aff591f60880d4245bf6c486cdd230563c_640.jpg"
+        },
+        {
+            "name": "故宫博物院",
+            "describe": "中国古代皇家宫殿，世界文化遗产",
+            "图片url": "https://pixabay.com/get/g3787a65bba0d6ad0df5b661e8947dfac7ca234ca1613cfbfc878b292872bdbf826faf7f049decbf72f1b1ffeacf16235dce4587745fc721891e4d9251275d3f5_640.jpg"
+        },
+        {
+            "name": "八达岭长城",
+            "describe": "中国最著名的长城段之一，世界文化遗产",
+            "图片url": "https://pixabay.com/get/g512e82b3cfbf1b40ddb2c706ac7cbf96f71709d886261dee2ae002ee1b63f9957a4c8a3fa3f15461c4c085b39aa8fa89eb91e6d60162f8dc168ef604ebd4928a_640.jpg"
+        },
+        {
+            "name": "明十三陵",
+            "describe": "明朝皇帝的陵墓群，世界文化遗产",
+            "图片url": "https://pixabay.com/get/g08070258c350c6c43cdb123d4932d4eb1ee60ed9cddc0132c56c9a76585a4a683c45bc7ae6ba62c7efc6d097189936b26fa4de927cac0a7322fca625da3ee85a_640.jpg"
+        },
+        {
+            "name": "鸟巢(国家体育场)",
+            "describe": "2008年北京奥运会主体育场，现代建筑代表作",
+            "图片url": "https://images.unsplash.com/photo-1736134068411-69a6d4405353?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Njc3MDd8MHwxfHNlYXJjaHwxfHwlRTUlOEMlOTclRTQlQkElQUMlMjAlRTklQjglOUYlRTUlQjclQTIlMjglRTUlOUIlQkQlRTUlQUUlQjYlRTQlQkQlOTMlRTglODIlQjIlRTUlOUMlQkElMjl8ZW58MHwwfHx8MTc1MTAzMTgyOHww&ixlib=rb-4.1.0&q=80&w=1080"
+        },
+        {
+            "name": "圆明园",
+            "describe": "中国古代皇家园林遗址，历史教育基地",
+            "图片url": "https://pixabay.com/get/g0ccf9af714c3871e23f9219a8c39f0cf545198bcff1b2b7c0a8a580d394db086f9584dfdf8ce07c5497da81024861643c608ce187110f50d1204d1e4c222a5af_640.jpg"
+        },
+        {
+            "name": "颐和园",
+            "describe": "中国现存最完整的皇家园林，世界文化遗产",
+            "图片url": "https://pixabay.com/get/gcab49478d7fb2889c00d8b7fb2e7fc123774ab45eb06fd1e451b24bbc8de01ba505781adfd674b1c2e173247ec7fa4d89f413af1af4fa71d9487eba41a48431a_640.jpg"
+        },
+        {
+            "name": "天坛公园",
+            "describe": "明清帝王祭天场所，世界文化遗产",
+            "图片url": "https://pixabay.com/get/g96afafe74a9f9d03962c207a7f2da675bbf655841ee97bd8182b93760bd2ba2a7d0396f41f56e9690009b95ca3b35206fd8fcd21339215800bdb451b30f72fd7_640.jpg"
+        },
+        {
+            "name": "北海公园",
+            "describe": "中国现存最古老、最完整的皇家园林",
+            "图片url": "https://pixabay.com/get/g6dc2449a88508d197212a7b90b41afb61eb2dda93a52caf42606b44df872b763571406f8e3789967b260efdc9adcd336c4f9e22ba8dc0a9b40c41013d2f6f514_640.jpg"
+        },
+        {
+            "name": "什刹海",
+            "describe": "北京著名的历史文化休闲区",
+            "图片url": "https://pixabay.com/get/gd38df2bf77fe6db9eec7870780c1a805f39e188cb410370d6034095d7f7bd8f328f8182784206e9bef3f2b4faf270a268197474c945f8d82b1069b1803ac51e0_640.jpg"
+        },
+        {
+            "name": "南锣鼓巷",
+            "describe": "北京最具特色的胡同之一，充满文艺气息",
+            "图片url": "https://pixabay.com/get/g1808d52b3d37c6fdd6e6dbfb411e7d5aead8129b921f279cce849ce293c9e69956b5b82691e50f170782bb51de147cc9116bfcc19dba30c54d8e13f2c7f4647b_640.jpg"
+        },
+        {
+            "name": "王府井步行街",
+            "describe": "北京最著名的商业街之一",
+            "图片url": "https://pixabay.com/get/g24a958aca767e34773fd6bfba9389e3450942d38f32e731a13dae4f23945b9aeef0827cc206b45e5bece59a1c86e06f6b45744d064c810404a5ea3da16d42d32_640.jpg"
+        },
+        {
+            "name": "簋街",
+            "describe": "北京著名的美食街",
+            "图片url": "https://pixabay.com/get/gc835a6afc1f449260dd7d4b0b6d139d18f05f8864dae6eeb4f0d24adf4480e1767d2e0eee03cdfe24bd44a358ff541d3bfc3fee19a703546d0b37fe1b239b9f9_640.jpg"
+        },
+        {
+            "name": "钟楼文化广场",
+            "describe": "北京中轴线上的重要文化地标",
+            "图片url": "https://pixabay.com/get/g743ee0b561791ef696cf17c3ed2326bcfe40b5d92ec34e3a64263ce36ace1dc7ad0f18b4cd853b2541dbe5b288f0dcd0724c3719a01547f29b7e8489f28ff2c6_640.jpg"
+        },
+        {
+            "name": "后海",
+            "describe": "北京著名的酒吧和夜生活区域",
+            "图片url": "https://pixabay.com/get/g5b6c8b83b3e9cbd0951b8f64787d708a4b814254ba9ca48c49820b403db19ce59665317d4cddc58aca9a9f81c11fba8ddfe9bc90c60456129e3f4fd718261f99_640.jpg"
+        },
+        {
+            "name": "景山公园",
+            "describe": "可俯瞰紫禁城全景的皇家园林",
+            "图片url": "https://pixabay.com/get/gc76af77752b5f085cd4c0494465f6a5b48629c523c3cbdd1c9df722e814dff0b23dfbfd46237681907f30a56afe7cdf7_640.jpg"
+        },
+        {
+            "name": "雍和宫",
+            "describe": "北京最大的藏传佛教寺庙",
+            "图片url": "https://pixabay.com/get/g081684d47ab1e8e5ad2b813839ea1f84955d1fd80d91f80dd3fb7ec5b73a8e7da4730bc625670f770385420fb8e13e2ba3d37ecf724eb2a4c3c9e043c9db60ff_640.jpg"
+        },
+        {
+            "name": "国子监孔庙",
+            "describe": "中国古代最高学府和祭祀孔子的场所",
+            "图片url": "https://pixabay.com/get/g71078e4df4faa9f2577afe9520d0691a9a73a17f87ae2a0fa03c825b59a9988824c040ff38e939a9f5b3822fa50a25f56044ed3b7aea318bfd299456108c9df1_640.jpg"
+        },
+        {
+            "name": "五道营",
+            "describe": "新兴的文艺胡同区",
+            "图片url": "https://pixabay.com/get/g7b704c45d09624e12335e9c117f51712a08d1ba9e3d6052b824dbf6c12841f3365119a818b468337529a74178cff711be6284828b1f0aba01e44e29ec63d6dc0_640.jpg"
+        },
+        {
+            "name": "清华/北大",
+            "describe": "中国最著名的高等学府",
+            "图片url": "https://images.unsplash.com/photo-1652678081432-cb907555d49e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Njc3MDd8MHwxfHNlYXJjaHwxfHwlRTUlOEMlOTclRTQlQkElQUMlMjAlRTYlQjglODUlRTUlOEQlOEUlMkYlRTUlOEMlOTclRTUlQTQlQTd8ZW58MHwwfHx8MTc1MTAzMTg0M3ww&ixlib=rb-4.1.0&q=80&w=1080"
+        },
+        {
+            "name": "四季民福烤鸭店(王府井东安门店)",
+            "describe": "北京著名的烤鸭店",
+            "图片url": "https://images.unsplash.com/photo-1745986782526-13060d572c52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Njc3MDd8MHwxfHNlYXJjaHwxfHwlRTUlOEMlOTclRTQlQkElQUMlMjAlRTUlOUIlOUIlRTUlQUQlQTMlRTYlQjAlOTElRTclQTYlOEYlRTclODMlQTQlRTklQjglQUQlRTUlQkElOTclMjglRTclOEUlOEIlRTUlQkElOUMlRTQlQkElOTUlRTQlQjglOUMlRTUlQUUlODklRTklOTclQTglRTUlQkElOTclMjl8ZW58MHwwfHx8MTc1MTAzMjIyNnww&ixlib=rb-4.1.0&q=80&w=1080"
+        },
+        {
+            "name": "居庸关长城",
+            "describe": "长城的重要关隘，地势险要",
+            "图片url": "https://pixabay.com/get/gb7d0f759a710817f63b08216627f36cb7cb8f10a192d46ef000563172189ef764c6da2508791d5d94154090f9a1d7fb5b2fbdab09d62d946f2e3bd1be2731fd3_640.jpg"
+        }
+    ],
+    "美食": [
+        {
+            "name": "北京烤鸭",
+            "describe": "北京最具代表性的传统美食，外皮酥脆，肉质鲜嫩多汁。",
+            "图片url": "https://pixabay.com/get/g98be0b7048fc0978f5c2dfa49479cb051e1081ce33b91dea13c3c79b6f8fe9c199c17d446c49e02899202fd71206f869bdb0bf0030375411259a6036b2bcf13d_640.jpg"
+        },
+        {
+            "name": "炸酱面",
+            "describe": "老北京经典面食，面条劲道，搭配浓郁的炸酱和黄瓜丝。",
+            "图片url": "https://pixabay.com/get/g38c5152c02f2e1c6f89899e24dc7060f1ad7bc351c39a17328736ab4aac98e6f92f43709941892a3e2c01a28d9594802ce98cbdc2a529d7c96c7d24dd1c4f726_640.jpg"
+        },
+        {
+            "name": "涮羊肉",
+            "describe": "北方经典火锅，羊肉片鲜嫩，搭配麻酱调料风味独特。",
+            "图片url": "https://pixabay.com/get/g507b217525eb94a6df4db441edfd74ba624adbd3f7f316c101ef663b460b6acbbd71fd4ddf0dc8d7ae5928e8e9d110f85c594866723217959707319206d8ebc4_640.jpg"
+        },
+        {
+            "name": "驴打滚",
+            "describe": "北京传统小吃，外层裹着黄豆粉，内里软糯香甜。",
+            "图片url": "https://pixabay.com/get/gfa740af3979a04dd1f4b6eb5caebd47f476ce2ec6e149841019f62a13187536c2c5a7b37f68c416f11be205193a7d3a88e450e1bdd0923e8832c3e98499ef9f0_640.jpg"
+        },
+        {
+            "name": "豆汁",
+            "describe": "老北京特色饮品，味道独特，略带酸味，需一定勇气尝试。",
+            "图片url": "https://pixabay.com/get/g1811e22e4514a3a7af7cbfd37de56341017f01977fcd46e5d8e02f5424b7f1c151c57198aad7451a6f02c26a2bd48081b1ebf93d2dfeba884c82f7952f4264cb_640.jpg"
+        },
+        {
+            "name": "卤煮",
+            "describe": "北京地道小吃，以猪肠、猪肺等为主料，炖煮入味。",
+            "图片url": "https://pixabay.com/get/gf8e38579a5426778e54c9cf22de54370eada179cb85d3fadcf47c37b89064388c04028dde5d6c8d73a9ab90c39a0e789e088b10b6dffd5a51f248b03d8dd6b5a_640.jpg"
+        },
+        {
+            "name": "炒肝",
+            "describe": "北京传统小吃，主要用猪肝和大肠制作，酱香浓郁。",
+            "图片url": "https://pixabay.com/get/gabfa4ebf8a0a02ef4f4d5ff195ec7e6931bcfa7d1aaae7e0fa5d0579b64276e44aa7a4eababf681e612fec47044eb44107de28cab475045ea77949706ef2c883_640.jpg"
+        },
+        {
+            "name": "老北京酸奶",
+            "describe": "北京特色酸奶，口感醇厚，酸甜适中。",
+            "图片url": "https://pixabay.com/get/g72e067f743e10ae0ac79a1a1d1331f48fd42e2c20642503d9976599d079065958f6243b66cef27c768e0bafd2c721f82eaef34e50569350e5d4d4defca288d94_640.jpg"
+        }
+    ],
+    "美食店铺": [
+        {
+            "name": "全聚德",
+            "describe": "北京烤鸭老字号，百年传承，享誉国内外。",
+            "图片url": "https://pixabay.com/get/g40f896be146a9827d1877e87e52d5a5067682bcafbd1061de209d1f3ebc39faae841f3c8be40d3c546c53a316942d0252505fe23baf7766832d3cb29e3b7dc44_640.jpg"
+        },
+        {
+            "name": "方砖厂69号炸酱面",
+            "describe": "前门大街人气炸酱面店，地道老北京风味。",
+            "图片url": "https://pixabay.com/get/ge59bfd4a55f76b11ff63a53b2f7da03d845da3f05bbe199a6f3c71a7e1f973c8886073a7264c1f8ef9b2a3552347f45f02c47d302d310497740eb3704cdfd31c_640.jpg"
+        },
+        {
+            "name": "吴裕泰",
+            "describe": "北京老字号茶庄，也有特色茶味冰淇淋和点心。",
+            "图片url": "https://pixabay.com/get/g0c2a35ae083e7dca7e54261472020b755b0c25060cb1dd7d1ca7cd1bd893ed349520c21a59c6dd4b58fc3a219d1fb667ed64bd178ea459ac85b1927d69ae4c7e_640.jpg"
+        }
+    ]
+}

@@ -19,7 +19,7 @@ load_dotenv()
 os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 os.environ["SEARCH_ENGINE_ID"] = os.getenv("SEARCH_ENGINE_ID")
 os.environ["FIRECRAWL_API_KEY"] = os.getenv("FIRECRAWL_API_KEY")
-os.environ["DEEPSEEK_API_KEY"] = os.getenv("DEEPSEEK_API_KEY")
+os.environ["FIRST_DEEPSEEK_API_KEY"] = os.getenv("FIRST_DEEPSEEK_API_KEY")
 os.environ["PIXABAY_API_KEY"] = os.getenv("PIXABAY_API_KEY")
 os.environ["UNSPLASH_ACCESS_KEY"] = os.getenv("UNSPLASH_ACCESS_KEY")
 
@@ -39,7 +39,7 @@ class TravelPlanner:
             model_type="deepseek-ai/DeepSeek-V3",
             url='https://api.siliconflow.cn/v1',
             model_config_dict={"max_tokens": 4096},
-            api_key=os.getenv('DEEPSEEK_API_KEY')
+            api_key=os.getenv('FIRST_DEEPSEEK_API_KEY')
         )
         # 初始化各种工具
         #重排序模型

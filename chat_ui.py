@@ -90,9 +90,10 @@ def initialize_agents():
     # 创建评估者模型（DeepSeek-R1）
     evaluator_model = ModelFactory.create(
         model_platform=ModelPlatformType.OPENAI_COMPATIBLE_MODEL,
-        model_type="deepseek-ai/DeepSeek-R1",
+        model_type="deepseek-ai/DeepSeek-V3",
         url=api_base,
-        api_key=deepseek_api_key
+        api_key=deepseek_api_key,
+        model_config_dict={"max_tokens": 1024}
     )
     
     # 文本回答者 Agent
@@ -124,7 +125,7 @@ def initialize_agents():
     evaluator_agent = ChatAgent(
         system_message=bm.make_assistant_message(
             role_name="评估专家",
-            content="你是一个 AI 评估员，评价ai对用户问题的回答质量以及符合用户需求程度，请对回答进行打分（1~10），并说明原因。"
+            content="你是一个 AI 评估员，评价ai对用户问题的回答质量以及符合用户需求程度，请对回答进行打分（1~10），并说明原因。注意打分时输出单个数字然后空格加上理由，不需要类似于'x分'这样的后缀。"
         ),
         model=evaluator_model,
         message_window_size=10
@@ -189,8 +190,13 @@ def analyze_image(image, vision_agent):
         )
         
         response = vision_agent.step(vision_msg)
-        image_description = response.msgs[0].content
         
+        # 检查响应是否有效
+        if not response or not hasattr(response, 'msgs') or not response.msgs:
+            st.error("图片分析失败：API返回空响应")
+            return None
+            
+        image_description = response.msgs[0].content
         return image_description
     except Exception as e:
         st.error(f"图片分析失败：{str(e)}")
@@ -202,10 +208,13 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
     
     # 如果启用知识库，先检索相关信息
     if use_kb and vector_retriever:
-        retrieved_info = query_knowledge_base(user_question, vector_retriever)
-        if retrieved_info:
-            knowledge_texts = [info['text'] for info in retrieved_info]
-            knowledge_info = "\n\n".join(knowledge_texts)
+        try:
+            retrieved_info = query_knowledge_base(user_question, vector_retriever)
+            if retrieved_info:
+                knowledge_texts = [info['text'] for info in retrieved_info]
+                knowledge_info = "\n\n".join(knowledge_texts)
+        except Exception as e:
+            st.warning(f"知识库检索失败，将使用基础模式：{str(e)}")
     
     # 构建完整问题
     full_question = f"用户问题：{user_question}\n\n"
@@ -231,15 +240,23 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
     
     while attempts < max_retries and not is_satisfied:
         attempts += 1
-        process_log.append(f"🔁 尝试第 {attempts} 次生成回答...")
+        process_log.append(f"🔄 尝试第 {attempts} 次生成回答...")
         
-        # Step 1: 回答者生成答案
-        answer_response = answerer_agent.step(usr_msg)
-        answer_content = answer_response.msgs[0].content
-        process_log.append(f"【回答者回复】\n{answer_content}")
-        
-        # Step 2: 构造评估请求
-        evaluation_prompt = f"""
+        try:
+            # Step 1: 回答者生成答案
+            answer_response = answerer_agent.step(usr_msg)
+            
+            # 检查回答响应是否有效
+            if not answer_response or not hasattr(answer_response, 'msgs') or not answer_response.msgs:
+                process_log.append("❌ 回答生成失败：API返回空响应")
+                final_answer = "抱歉，我无法生成回答，请稍后重试。"
+                break
+                
+            answer_content = answer_response.msgs[0].content
+            process_log.append(f"【回答者回复】\n{answer_content}")
+            
+            # Step 2: 构造评估请求
+            evaluation_prompt = f"""
 请评估以下问答过程的质量：
 
 【用户提问】
@@ -259,37 +276,59 @@ def process_question_with_knowledge(user_question, image_description, vector_ret
 
 请只返回一个数字 + 简要理由。
 """
-        
-        evaluation_msg = bm.make_user_message(
-            role_name='评估器',
-            content=evaluation_prompt
-        )
-        
-        # Step 3: 评估者分析回答质量
-        evaluation_response = evaluator_agent.step(evaluation_msg)
-        evaluation_content = evaluation_response.msgs[0].content.strip()
-        process_log.append(f"【评估结果】\n{evaluation_content}")
-        
-        # Step 4: 判断是否满意
-        try:
-            score = int(evaluation_content.split()[0])
-            if score >= 6:
-                is_satisfied = True
+            
+            evaluation_msg = bm.make_user_message(
+                role_name='评估器',
+                content=evaluation_prompt
+            )
+            
+            # Step 3: 评估者分析回答质量
+            try:
+                evaluation_response = evaluator_agent.step(evaluation_msg)
+                
+                # 检查评估响应是否有效
+                if not evaluation_response or not hasattr(evaluation_response, 'msgs') or not evaluation_response.msgs:
+                    process_log.append("⚠️ 评估失败：API返回空响应，默认通过")
+                    final_answer = answer_content
+                    is_satisfied = True
+                    break
+                    
+                evaluation_content = evaluation_response.msgs[0].content.strip()
+                process_log.append(f"【评估结果】\n{evaluation_content}")
+                
+                # Step 4: 判断是否满意
+                try:
+                    score = int(evaluation_content.split()[0])
+                    if score >= 6:
+                        is_satisfied = True
+                        final_answer = answer_content
+                        process_log.append(f"✅ 评分达标（{score}分），生成完成！")
+                    else:
+                        improve_msg = bm.make_user_message(
+                            role_name='评估反馈',
+                            content=f"你的回答得分 {score} 分，不够理想。请根据以下建议改进：{evaluation_content}"
+                        )
+                        answerer_agent.update_messages(improve_msg)
+                        process_log.append(f"❌ 评分不达标（{score}分），准备重新生成...")
+                except (ValueError, IndexError) as e:
+                    process_log.append(f"⚠️ 无法解析评分，默认通过：{str(e)}")
+                    final_answer = answer_content
+                    is_satisfied = True
+                    
+            except Exception as e:
+                process_log.append(f"⚠️ 评估过程出错，默认通过：{str(e)}")
                 final_answer = answer_content
-                process_log.append(f"✅ 评分达标（{score}分），生成完成！")
-            else:
-                improve_msg = bm.make_user_message(
-                    role_name='评估反馈',
-                    content=f"你的回答得分 {score} 分，不够理想。请根据以下建议改进：{evaluation_content}"
-                )
-                answerer_agent.update_messages(improve_msg)
-                process_log.append(f"❌ 评分不达标（{score}分），准备重新生成...")
+                is_satisfied = True
+                
         except Exception as e:
-            process_log.append("⚠️ 无法解析评分，继续下一轮尝试。")
-            answerer_agent.update_messages(bm.make_user_message(
-                role_name='评估反馈',
-                content="评估结果不明确，请尝试改进。"
-            ))
+            process_log.append(f"❌ 第{attempts}次尝试失败：{str(e)}")
+            if attempts == max_retries:
+                final_answer = "抱歉，系统遇到问题，请稍后重试。"
+    
+    # 如果所有尝试都失败了，提供默认回答
+    if final_answer is None:
+        final_answer = "抱歉，我无法为您提供满意的回答，请稍后重试或重新描述您的问题。"
+        process_log.append("❌ 所有尝试都失败，返回默认回答")
     
     return final_answer, process_log, knowledge_info
 
@@ -426,8 +465,7 @@ def main():
                         if image_description:
                             st.success("✅ 图片分析完成")
                         else:
-                            st.error("❌ 图片分析失败")
-                            return
+                            st.error("❌ 图片分析失败，将继续处理文字问题")
                 
                 # 处理问题
                 with st.spinner("正在思考答案，请稍候..."):

@@ -34,7 +34,7 @@ try:
             model_type="deepseek-ai/DeepSeek-V3",
             url='https://api.siliconflow.cn/v1',
             model_config_dict={"max_tokens": 8192},
-            api_key=os.getenv('DEEPSEEK_API_KEY')
+            api_key=os.getenv('FIRST_DEEPSEEK_API_KEY')
     )
 
     tools_list = [

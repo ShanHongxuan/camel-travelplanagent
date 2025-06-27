@@ -1,20 +1,16 @@
 import os
-import sys
 import json
 import requests
 import time
-from typing import Optional
 from flask import Flask, request, jsonify, Response
-
 from dotenv import load_dotenv
-from camel.configs import QwenConfig
 from camel.models import ModelFactory
 from camel.types import ModelPlatformType
 from camel.agents import ChatAgent
 
 load_dotenv()
 
-API_KEY = os.getenv('DEEPSEEK_API_KEY')
+API_KEY = os.getenv('FIRST_DEEPSEEK_API_KEY')
 
 SYSTEM_PROMPT = """
 你是一个旅游信息提取助手。你的任务是从用户的输入中提取旅游目的地城市和行程天数，并根据提取情况决定是否需要用户补充信息。
